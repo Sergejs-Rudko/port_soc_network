@@ -1,13 +1,22 @@
 import React from "react";
 import {Post} from "./Post/Post";
+import {PostDataType} from "../../../../index";
 
-export const MyPosts = () => {
+type PropsType = {
+    postData: PostDataType
+}
+
+export const MyPosts = (props: PropsType) => {
     return (
         <div>
             <textarea></textarea>
             <button>add post</button>
-            <Post message={`First post yo!`}/>
-            <Post message={`Second post yo!`}/>
+            {
+                props.postData.map((p) => <Post
+                    message={p.message}
+                    key={p.id}
+                    likesCount={p.likesCount}/>)
+            }
         </div>
     )
 }

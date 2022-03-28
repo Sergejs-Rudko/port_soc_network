@@ -3,19 +3,27 @@ import styles from "./Dialogs.module.css"
 import {NavLink} from "react-router-dom";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
+import {DialogsDataType, MessagesDataType} from "../../../index";
 
-export const Dialogs = () => {
+type PropsType = {
+    dialogsData: DialogsDataType
+    messagesData: MessagesDataType
+}
+
+export const Dialogs = (props: PropsType) => {
+
+
     return (
         <div className={styles.dialogs}>
             <div className={styles.dialog_items}>
-                <DialogItem name={"Dimich"}/>
-                <DialogItem name={"Zhora"}/>
-                <DialogItem name={"Ignat"}/>
+                {
+                    props.dialogsData.map((d) => <DialogItem name={d.name} key={d.id}/>)
+                }
             </div>
             <div className={styles.messages}>
-                <Message message={"hey"}/>
-                <Message message={"YO"}/>
-                <Message message={"BEAAAST!!"}/>
+                {
+                    props.messagesData.map((m) => <Message message={m.message} key={m.id}/>)
+                }
             </div>
         </div>
     )
