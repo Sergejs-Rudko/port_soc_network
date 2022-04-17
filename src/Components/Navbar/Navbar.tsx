@@ -2,13 +2,10 @@ import React from "react";
 import styles from "./Navbar.module.css"
 import {NavLink} from "react-router-dom";
 import {Friends} from "./Friends/Friends";
-import {FriendType} from "../../fakeRedux/state";
 
-type PropsType = {
-    friends: FriendType[]
-}
 
-export const Navbar = (props: PropsType) => {
+
+export const Navbar = () => {
 
     return (
         <div>
@@ -29,7 +26,7 @@ export const Navbar = (props: PropsType) => {
                 <div className={styles.item}><a href="#">Music</a></div>
                 <div className={styles.item}><a href="#">Setting</a></div>
             </nav>
-            <Friends friends={props.friends}/>
+            <Friends/>
         </div>
     )
 }

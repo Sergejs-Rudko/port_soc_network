@@ -19,7 +19,7 @@ export let state: StateType = {
             {id: 2, message: "yo", likesCount: 2},
             {id: 3, message: "no", likesCount: 11},
             {id: 4, message: "arrr!", likesCount: 3},
-        ]
+        ],
     },
     sideBar: {
         friends: [{
@@ -27,7 +27,8 @@ export let state: StateType = {
             name: "kekbur"
         },
             {avatar: "https://kaifolog.ru/uploads/posts/2015-09/1443418074_012.jpg", name: "Dimich"},
-            {avatar: "http://img-fotki.yandex.ru/get/5005/kot-de-azur.25/0_4b330_99c677ac_orig.jpg", name: "zhora"}]
+            {avatar: "http://img-fotki.yandex.ru/get/5005/kot-de-azur.25/0_4b330_99c677ac_orig.jpg", name: "zhora"}
+        ]
     }
 }
 

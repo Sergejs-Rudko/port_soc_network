@@ -1,30 +1,52 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import styles from "./Dialogs.module.css"
-import {NavLink} from "react-router-dom";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {DialogsDataType, MessagesDataType} from "../../../index";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    addMessageAC,
+    DialogsDataType, MessageDataType,
+    updateNewMessageBodyAC
+} from "../../../fakeRedux/reducers/dialogsReducer";
+import {AppRootStateType} from "../../../fakeRedux/store";
 
-type PropsType = {
-    dialogsData: DialogsDataType
-    messagesData: MessagesDataType
-}
 
-export const Dialogs = (props: PropsType) => {
+// type PropsType = {
+//     dialogsData: DialogsDataType
+//     messagesData: MessagesDataType
+// }
 
+
+export const Dialogs = () => {
+    const dispatch = useDispatch()
+    let message = useSelector<AppRootStateType, string>(state => state.dialogsPage.newMessageText)
+    const dialogsData = useSelector<AppRootStateType, DialogsDataType []>(state => state.dialogsPage.dialogsData)
+    const messagesData = useSelector<AppRootStateType, MessageDataType[]>(state => state.dialogsPage.messagesData)
+
+
+    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        dispatch(updateNewMessageBodyAC(e.currentTarget.value))
+    }
+
+    const addMessage = () => {
+        dispatch(addMessageAC(message))
+        dispatch(updateNewMessageBodyAC(""))
+    }
 
     return (
         <div className={styles.dialogs}>
             <div className={styles.dialog_items}>
                 {
-                    props.dialogsData.map((d) => <DialogItem name={d.name} key={d.id}/>)
+                    dialogsData.map((d) => <DialogItem name={d.name} key={d.id}/>)
                 }
             </div>
             <div className={styles.messages}>
                 {
-                    props.messagesData.map((m) => <Message message={m.message} key={m.id}/>)
+                    messagesData.map((m) => <Message message={m.message} key={m.id}/>)
                 }
             </div>
+            <textarea value={message} onChange={onChangeHandler}></textarea>
+            <button onClick={addMessage}>send message</button>
         </div>
     )
 }

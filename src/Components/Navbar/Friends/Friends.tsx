@@ -2,16 +2,16 @@ import React from "react";
 import {Friend} from "./Friend/Friend";
 import {FriendType} from "../../../fakeRedux/state";
 import styles from "./Friends.module.css"
+import {useSelector} from "react-redux";
+import {AppRootStateType} from "../../../fakeRedux/store";
 
-type PropsType = {
-    friends: FriendType[]
-}
 
-export const Friends = (props: PropsType) => {
+export const Friends = () => {
+    const friends = useSelector<AppRootStateType, FriendType []>(state => state.navbar.friends)
     return (
         <div className={styles.friends}>
             {
-                props.friends.map((f) => <Friend avatar={f.avatar} name={f.name}/>)
+                friends.map((f) => <Friend avatar={f.avatar} name={f.name} key={f.name}/>)
             }
         </div>
     )
