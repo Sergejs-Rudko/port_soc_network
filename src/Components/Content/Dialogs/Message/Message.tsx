@@ -5,10 +5,10 @@ type PropsType = {
     message: string
 }
 
-export const Message = (props: PropsType) => {
+export const Message = React.memo((props: PropsType) => {
     return (
         <div>
             <div className={styles.message}>{props.message}</div>
         </div>
     )
-}
+})

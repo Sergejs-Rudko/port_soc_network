@@ -5,7 +5,7 @@ import styles from "./Friends.module.css"
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../../fakeRedux/store";
 
-
+// 45 - 8:10
 export const Friends = () => {
     const friends = useSelector<AppRootStateType, FriendType []>(state => state.navbar.friends)
     return (

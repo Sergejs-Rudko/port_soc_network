@@ -5,6 +5,7 @@ import {Navbar} from "./Components/Navbar/Navbar";
 import {Profile} from "./Components/Content/Profile/Profile";
 import {Dialogs} from "./Components/Content/Dialogs/Dialogs";
 import {Route, Routes} from "react-router-dom";
+import {Users} from "./Components/Users/Users";
 
 function App() {
     return (
@@ -13,7 +14,8 @@ function App() {
             <div className={"content"}>
                 <Routes>
                     <Route path={"profile"} element={<Profile/>}/>
-                    <Route path={"dialogs*"} element={<Dialogs/>}/>
+                    <Route path={"dialogs/*"} element={<Dialogs/>}/>
+                    <Route path={"users"} element={<Users/>}/>
                 </Routes>
             </div>
             <Navbar/>
